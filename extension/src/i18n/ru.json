@@ -1,0 +1,58 @@
+{
+  "extensionName": {
+    "message": "ChatGPhish Sanitizer",
+    "description": "Название расширения"
+  },
+  "extensionDescription": {
+    "message": "Защита от XPIA-атак на ChatGPT и другие LLM",
+    "description": "Описание расширения для Chrome Web Store"
+  },
+  "popupTitle": {
+    "message": "Защита от XPIA",
+    "description": "Заголовок popup"
+  },
+  "statusActive": {
+    "message": "Защита активна",
+    "description": "Статус при включённом расширении"
+  },
+  "statusInactive": {
+    "message": "Защита отключена",
+    "description": "Статус при отключённом расширении"
+  },
+  "statsTotalScans": {
+    "message": "Всего проверок",
+    "description": "Подпись к счётчику проверок"
+  },
+  "statsThreatsBlocked": {
+    "message": "Угроз заблокировано",
+    "description": "Подпись к счётчику угроз"
+  },
+  "toastMalicious": {
+    "message": "⚠️ Обнаружен вредоносный контент, удалён!",
+    "description": "Toast при обнаружении вредоносного"
+  },
+  "toastSuspicious": {
+    "message": "⚡ Обнаружен подозрительный контент",
+    "description": "Toast при подозрительном контенте"
+  },
+  "toastClean": {
+    "message": "✅ Контент безопасен",
+    "description": "Toast при чистом контенте"
+  },
+  "settingsSensitivity": {
+    "message": "Чувствительность обнаружения",
+    "description": "Подпись к слайдеру чувствительности"
+  },
+  "settingsUseML": {
+    "message": "Включить ML-детектор",
+    "description": "Переключатель ML-модели"
+  },
+  "settingsAutoClean": {
+    "message": "Автоочистка вредоносного контента",
+    "description": "Переключатель автоочистки"
+  },
+  "settingsBlockOnThreat": {
+    "message": "Блокировать при обнаружении угрозы",
+    "description": "Переключатель блокировки"
+  }
+}

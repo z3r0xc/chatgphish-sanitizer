@@ -1,0 +1,58 @@
+{
+  "extensionName": {
+    "message": "ChatGPhish Sanitizer",
+    "description": "Extension name"
+  },
+  "extensionDescription": {
+    "message": "Protection against XPIA attacks on ChatGPT and other LLMs",
+    "description": "Extension description for Chrome Web Store"
+  },
+  "popupTitle": {
+    "message": "XPIA Protection",
+    "description": "Popup header title"
+  },
+  "statusActive": {
+    "message": "Protection Active",
+    "description": "Status when extension is enabled"
+  },
+  "statusInactive": {
+    "message": "Protection Disabled",
+    "description": "Status when extension is disabled"
+  },
+  "statsTotalScans": {
+    "message": "Total Scans",
+    "description": "Label for total scans counter"
+  },
+  "statsThreatsBlocked": {
+    "message": "Threats Blocked",
+    "description": "Label for threats blocked counter"
+  },
+  "toastMalicious": {
+    "message": "⚠️ Malicious content detected and removed!",
+    "description": "Toast message for malicious detection"
+  },
+  "toastSuspicious": {
+    "message": "⚡ Suspicious content detected",
+    "description": "Toast message for suspicious content"
+  },
+  "toastClean": {
+    "message": "✅ Content is safe",
+    "description": "Toast message for clean content"
+  },
+  "settingsSensitivity": {
+    "message": "Detection Sensitivity",
+    "description": "Settings label for sensitivity slider"
+  },
+  "settingsUseML": {
+    "message": "Enable ML Detection",
+    "description": "Settings toggle for ML model"
+  },
+  "settingsAutoClean": {
+    "message": "Auto-clean Malicious Content",
+    "description": "Settings toggle for auto-clean"
+  },
+  "settingsBlockOnThreat": {
+    "message": "Block on Threat Detection",
+    "description": "Settings toggle for blocking"
+  }
+}
