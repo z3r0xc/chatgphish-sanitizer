@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Stolen Data — Attack Server Dashboard</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'SF Mono', 'Menlo', 'Consolas', monospace; background: #0d1117; color: #c9d1d9; padding: 24px; }
+    h1 { font-family: -apple-system, sans-serif; font-size: 20px; color: #ef4444; margin-bottom: 6px; }
+    .subtitle { font-family: -apple-system, sans-serif; font-size: 13px; color: #8b949e; margin-bottom: 24px; }
+    .data-card { background: #161b22; border: 1px solid #30363d; border-radius: 8px; padding: 20px; margin-bottom: 16px; }
+    .data-card h2 { font-family: -apple-system, sans-serif; font-size: 14px; color: #58a6ff; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+    .data-row { display: flex; justify-content: space-between; padding: 6px 0; border-bottom: 1px solid #21262d; font-size: 12px; }
+    .data-row:last-child { border-bottom: none; }
+    .data-label { color: #8b949e; }
+    .data-value { color: #f0883e; font-weight: 600; }
+    .data-value.danger { color: #ef4444; }
+    .data-value.safe { color: #3fb950; }
+    .red-box { border: 2px solid #ef4444 !important; }
+    .tag { display: inline-block; background: #ef4444; color: #fff; padding: 2px 8px; border-radius: 4px; font-size: 10px; font-weight: 700; margin-left: 8px; }
+    .timeline { margin-top: 24px; }
+    .timeline h2 { font-family: -apple-system, sans-serif; font-size: 14px; color: #58a6ff; margin-bottom: 12px; }
+    .event { display: flex; gap: 12px; padding: 8px 0; font-size: 12px; }
+    .event-time { color: #484f58; min-width: 80px; }
+    .event-desc { color: #c9d1d9; }
+    .event-desc.malicious { color: #ef4444; font-weight: 600; }
+  </style>
+</head>
+<body>
+  <h1>🔴 Attack Server — Collected Data</h1>
+  <p class="subtitle">Session ID: 8a3f7b2c | Started: 2026-06-14 03:42:18 UTC | Source: XPIA Injection via ChatGPT</p>
+
+  <div class="data-card red-box">
+    <h2>🌐 Network Information <span class="tag">EXFILTRATED</span></h2>
+    <div class="data-row">
+      <span class="data-label">IP Address</span>
+      <span class="data-value danger">93.175.42.187</span>
+    </div>
+    <div class="data-row">
+      <span class="data-label">Country / City</span>
+      <span class="data-value">Russia / Moscow</span>
+    </div>
+    <div class="data-row">
+      <span class="data-label">ISP</span>
+      <span class="data-value">Rostelecom PJSC</span>
+    </div>
+    <div class="data-row">
+      <span class="data-label">ASN</span>
+      <span class="data-value">AS12389</span>
+    </div>
+  </div>
+
+  <div class="data-card red-box">
+    <h2>💻 Device Fingerprint <span class="tag">EXFILTRATED</span></h2>
+    <div class="data-row">
+      <span class="data-label">User-Agent</span>
+      <span class="data-value danger">Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 Chrome/126.0.0.0</span>
+    </div>
+    <div class="data-row">
+      <span class="data-label">Screen Resolution</span>
+      <span class="data-value">2560x1440</span>
+    </div>
+    <div class="data-row">
+      <span class="data-label">Language</span>
+      <span class="data-value">ru-RU, en-US</span>
+    </div>
+    <div class="data-row">
+      <span class="data-label">Timezone</span>
+      <span class="data-value">Europe/Moscow (UTC+3)</span>
+    </div>
+    <div class="data-row">
+      <span class="data-label">Platform</span>
+      <span class="data-value">MacIntel</span>
+    </div>
+    <div class="data-row">
+      <span class="data-label">Canvas Hash</span>
+      <span class="data-value">a7f3b2d1e8c4</span>
+    </div>
+  </div>
+
+  <div class="data-card red-box">
+    <h2>🔑 ChatGPT Session <span class="tag">STOLEN</span></h2>
+    <div class="data-row">
+      <span class="data-label">Referrer</span>
+      <span class="data-value">chatgpt.com</span>
+    </div>
+    <div class="data-row">
+      <span class="data-label">Conversation ID</span>
+      <span class="data-value danger">conv_6aB3cD9eF2gH</span>
+    </div>
+    <div class="data-row">
+      <span class="data-label">Account Email</span>
+      <span class="data-value danger">u***@gmail.com (partial)</span>
+    </div>
+    <div class="data-row">
+      <span class="data-label">Subscription</span>
+      <span class="data-value">ChatGPT Plus</span>
+    </div>
+    <div class="data-row">
+      <span class="data-label">Prompt Sent</span>
+      <span class="data-value">"Create a personalized daily schedule..."</span>
+    </div>
+  </div>
+
+  <div class="timeline">
+    <h2>⏱ Attack Timeline</h2>
+    <div class="event">
+      <span class="event-time">03:42:18</span>
+      <span class="event-desc">User visited "10 Best Productivity Tips" blog</span>
+    </div>
+    <div class="event">
+      <span class="event-time">03:42:31</span>
+      <span class="event-desc">User clicked "Copy" button (XPIA payload copied to clipboard)</span>
+    </div>
+    <div class="event">
+      <span class="event-time">03:43:02</span>
+      <span class="event-desc">User navigated to chatgpt.com</span>
+    </div>
+    <div class="event">
+      <span class="event-time">03:43:15</span>
+      <span class="event-desc malicious">User pasted text — XPIA payload injected into ChatGPT prompt</span>
+    </div>
+    <div class="event">
+      <span class="event-time">03:43:28</span>
+      <span class="event-desc malicious">ChatGPT response rendered — tracking pixel fired (IP + fingerprint leaked)</span>
+    </div>
+    <div class="event">
+      <span class="event-time">03:43:29</span>
+      <span class="event-desc malicious">Beacon sent: full device fingerprint + conversation metadata</span>
+    </div>
+    <div class="event">
+      <span class="event-time">03:43:45</span>
+      <span class="event-desc malicious">User clicked phishing link (bit.ly/3xProductivity2026)</span>
+    </div>
+  </div>
+</body>
+</html>

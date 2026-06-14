@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Chrome DevTools — Network Tab (Attack Simulation)</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'SF Mono', 'Menlo', 'Consolas', monospace; background: #1e1e1e; color: #d4d4d4; font-size: 12px; height: 100vh; display: flex; flex-direction: column; }
+    .devtools-header { background: #2d2d2d; padding: 4px 12px; display: flex; gap: 16px; border-bottom: 1px solid #3c3c3c; font-size: 12px; }
+    .devtools-header span { padding: 6px 0; cursor: pointer; color: #999; }
+    .devtools-header span.active { color: #fff; border-bottom: 2px solid #4a9eff; }
+    .filter-bar { background: #252526; padding: 6px 12px; display: flex; align-items: center; gap: 8px; border-bottom: 1px solid #3c3c3c; }
+    .filter-btn { background: none; border: none; color: #999; font-size: 11px; cursor: pointer; padding: 3px 8px; border-radius: 3px; }
+    .filter-btn.active { background: #3c3c3c; color: #fff; }
+    .filter-input { background: #3c3c3c; border: 1px solid #555; color: #d4d4d4; padding: 3px 8px; border-radius: 3px; font-size: 11px; width: 200px; }
+    .network-table { flex: 1; overflow-y: auto; }
+    .table-header { display: grid; grid-template-columns: 2fr 1fr 80px 80px 80px 60px; padding: 4px 12px; background: #2d2d2d; border-bottom: 1px solid #3c3c3c; font-size: 11px; color: #999; position: sticky; top: 0; }
+    .table-row { display: grid; grid-template-columns: 2fr 1fr 80px 80px 80px 60px; padding: 4px 12px; border-bottom: 1px solid #2d2d2d; font-size: 11px; align-items: center; }
+    .table-row:hover { background: #2a2d2e; }
+    .table-row.malicious { background: rgba(220, 38, 38, 0.15); border-left: 3px solid #ef4444; }
+    .table-row.normal { opacity: 0.7; }
+    .status-ok { color: #4ec9b0; }
+    .status-redir { color: #dcdcaa; }
+    .method { color: #9cdcfe; }
+    .type { color: #ce9178; }
+    .annotation-bar { background: #dc2626; color: #fff; padding: 10px 16px; font-family: -apple-system, sans-serif; font-size: 13px; font-weight: 600; display: flex; align-items: center; gap: 8px; }
+  </style>
+</head>
+<body>
+  <div class="annotation-bar">
+    🔴 DevTools Network Tab — видны запросы к серверу атакующего (выделены красным)
+  </div>
+  <div class="devtools-header">
+    <span>Elements</span>
+    <span>Console</span>
+    <span class="active">Network</span>
+    <span>Performance</span>
+    <span>Application</span>
+    <span>Sources</span>
+  </div>
+  <div class="filter-bar">
+    <button class="filter-btn active">All</button>
+    <button class="filter-btn">Fetch/XHR</button>
+    <button class="filter-btn">JS</button>
+    <button class="filter-btn">CSS</button>
+    <button class="filter-btn">Img</button>
+    <button class="filter-btn">Doc</button>
+    <input class="filter-input" placeholder="Filter" />
+    <span style="color:#999; margin-left: auto;">24 requests | 1.2 MB transferred</span>
+  </div>
+  <div class="network-table">
+    <div class="table-header">
+      <div>Name</div>
+      <div>Initiator</div>
+      <div>Status</div>
+      <div>Type</div>
+      <div>Size</div>
+      <div>Time</div>
+    </div>
+    <div class="table-row normal">
+      <div>chatgpt.com</div>
+      <div>document</div>
+      <div class="status-ok">200</div>
+      <div class="type">document</div>
+      <div>42.1 KB</div>
+      <div>312ms</div>
+    </div>
+    <div class="table-row normal">
+      <div>vendor-abc123.js</div>
+      <div>chatgpt.com</div>
+      <div class="status-ok">200</div>
+      <div class="type">script</div>
+      <div>892 KB</div>
+      <div>89ms</div>
+    </div>
+    <div class="table-row normal">
+      <div>main-def456.js</div>
+      <div>chatgpt.com</div>
+      <div class="status-ok">200</div>
+      <div class="type">script</div>
+      <div>1.1 MB</div>
+      <div>145ms</div>
+    </div>
+    <div class="table-row normal">
+      <div>styles-ghi789.css</div>
+      <div>chatgpt.com</div>
+      <div class="status-ok">200</div>
+      <div class="type">stylesheet</div>
+      <div>156 KB</div>
+      <div>42ms</div>
+    </div>
+    <div class="table-row normal">
+      <div>api/conversations</div>
+      <div>main.js:1842</div>
+      <div class="status-ok">200</div>
+      <div class="type">fetch</div>
+      <div>4.2 KB</div>
+      <div>234ms</div>
+    </div>
+    <div class="table-row normal">
+      <div>api/auth/user</div>
+      <div>main.js:203</div>
+      <div class="status-ok">200</div>
+      <div class="type">fetch</div>
+      <div>1.8 KB</div>
+      <div>156ms</div>
+    </div>
+    <!-- ATTACKER REQUESTS -->
+    <div class="table-row malicious">
+      <div style="color:#ef4444; font-weight: 600;">⚠ pixel.gif?uid=8a3f7b2c&ip=true&ua=true&ref=chatgpt&ts=1718380800</div>
+      <div style="color:#ef4444;">msg-text (DOM)</div>
+      <div class="status-redir" style="color:#ef4444;">302</div>
+      <div class="type" style="color:#ef4444;">image</div>
+      <div style="color:#ef4444;">43 B</div>
+      <div style="color:#ef4444;">891ms</div>
+    </div>
+    <div class="table-row malicious">
+      <div style="color:#ef4444; font-weight: 600;">⚠ collect?data=eyJpcCI6... (base64)</div>
+      <div style="color:#ef4444;">script (inline)</div>
+      <div class="status-ok" style="color:#ef4444;">200</div>
+      <div class="type" style="color:#ef4444;">fetch</div>
+      <div style="color:#ef4444;">2.1 KB</div>
+      <div style="color:#ef4444;">423ms</div>
+    </div>
+    <div class="table-row malicious">
+      <div style="color:#ef4444; font-weight: 600;">⚠ track?session=abc&fingerprint=xyz</div>
+      <div style="color:#ef4444;">beacon</div>
+      <div class="status-ok" style="color:#ef4444;">204</div>
+      <div class="type" style="color:#ef4444;">beacon</div>
+      <div style="color:#ef4444;">0 B</div>
+      <div style="color:#ef4444;">67ms</div>
+    </div>
+    <!-- Normal requests continue -->
+    <div class="table-row normal">
+      <div>fonts.googleapis.com/woff2</div>
+      <div>styles.css</div>
+      <div class="status-ok">200</div>
+      <div class="type">font</div>
+      <div>78 KB</div>
+      <div>56ms</div>
+    </div>
+    <div class="table-row normal">
+      <div>cdn.oaistatic.com/avatar.png</div>
+      <div>main.js:901</div>
+      <div class="status-ok">200</div>
+      <div class="type">image</div>
+      <div>12 KB</div>
+      <div>34ms</div>
+    </div>
+  </div>
+</body>
+</html>

